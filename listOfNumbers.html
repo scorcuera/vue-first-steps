@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>List of numbers</h1>
+      <div v-for="object in listOfNumbers">
+        <p>This is my number {{object.numberName}}: {{ object.number }}</p>
+      </div>
+      <button v-on:click="returnGreaterThanThree">Return numbers greather than 3</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+      const { createApp } = Vue;
+
+      const app = createApp({
+        data() {
+            return {
+               listOfNumbers: [
+                {
+                    "number": 1,
+                    "numberName": "one"
+                },
+                {
+                    "number": 2,
+                    "numberName": "two"
+                },
+                {
+                    "number": 3,
+                    "numberName": "three"
+                },
+                {
+                    "number": 4,
+                    "numberName": "four"
+                },
+                {
+                    "number": 5,
+                    "numberName": "five"
+                }
+               ]
+            }
+        },
+        methods: {
+            returnGreaterThanThree() {
+                this.listOfNumbers = this.listOfNumbers.filter(object => object.number > 3);
+            }
+        }
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
